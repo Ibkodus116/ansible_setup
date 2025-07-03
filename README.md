@@ -44,6 +44,7 @@ Now we can ping our server by using
 ``` bash
 ansible all -m ping
 ```
+Other useful command
 ``` bash
 ansible all --list-hosts #Shows all avaiable host
 ```
@@ -54,3 +55,17 @@ ansible all -m gather_facts #Get info about each server anisble is connected to
 ``` Bash
 ansible all -m gather_facts --limit server-IP #Get info about the IP specified
 ```
+## Ansible playBook
+I created a `.yml` file within out directory
+- Start by write a `---` within our file 
+- The begining of a new statement wil start with `-` here is what a playbook that installs tree looks like
+![Playbook](image/playbook.png)
+- Then we run the ansible-playbook command to install the package across various server 
+```bash
+ansible-playbook --ask-become-pass install_tree.yml
+```
+A sucesfull instaltion message
+![alt text](image/installed.png)
+
+- `state:latest` tells ansible to install latest package
+- `state: absent` - uninstalls a package
