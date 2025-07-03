@@ -26,7 +26,7 @@ ssh -i .ssh/ansible ubuntu@ec2-000-0.compute.amazonaws.com
 ```
 With this command I am able to login in and out of my Server easily. Now we start our ansible setup
 
-## Configuring ansible
+## Connect ansible to our server
 I created a folder named ansible_tutorial and cloned this repo (ansible_setup) within the folder. so I will be wokring in the directory ```ansible_tutorial/ansible_setup``` within the folder I created a file named invetory and Insert my server Host name
 ![cat inventory](image/cat_inventory.png)
 
@@ -38,3 +38,19 @@ ansible all --key-file ~/.ssh/ansible -i inventory -m ping
 Got a succesfull responde like this 
 ![ping](image/ping.png)
 
+In an attempt to reduce typing this bulky line of command everytime I created a config file called ```ansible.cfg``` then specified the invetory fire and the seceret key
+![config file](image/config.png)
+Now we can ping our server by using
+``` bash
+ansible all -m ping
+```
+``` bash
+ansible all --list-hosts #Shows all avaiable host
+```
+
+``` Bash
+ansible all -m gather_facts #Get info about each server anisble is connected to
+```
+``` Bash
+ansible all -m gather_facts --limit server-IP #Get info about the IP specified
+```
